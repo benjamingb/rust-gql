@@ -18,9 +18,9 @@ impl Todo {
 
         for rec in recs {
             todos.push(Todo {
-                id: rec.id
-                body:rec.body,
-                complete: rec.complete
+                id: rec.id,
+                body: rec.body,
+                complete: rec.complete,
             });
         }
 
