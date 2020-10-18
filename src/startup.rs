@@ -11,7 +11,6 @@ use std::net::TcpListener;
 
 pub fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Error> {
 
-    let db_pool = Data::new(db_pool);
 
     //GraphQL
     let schema = Schema::build(QueryRoot, MutationRoot, EmptySubscription)
@@ -20,7 +19,7 @@ pub fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Er
 
     let server = HttpServer::new(move || {
         App::new()
-            //.app_data(db_pool.clone())
+            .app_data(db_pool.clone())
             .data(schema.clone())
             .route("/graphql", web::post().to(graphql))
             .route("/graphql", web::get().to(graphql_playground))

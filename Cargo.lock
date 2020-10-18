@@ -534,6 +534,27 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a1fd36ffbb1fb7c834eac128ea8d0e310c5aeb635548f9d58861e1308d46e71c"
 
 [[package]]
+name = "app"
+version = "0.1.0"
+dependencies = [
+ "actix-cors",
+ "actix-rt",
+ "actix-web 3.1.0",
+ "anyhow",
+ "async-graphql",
+ "async-graphql-actix-web",
+ "config",
+ "dotenv",
+ "env_logger",
+ "reqwest",
+ "serde 1.0.117",
+ "sqlx",
+ "sqlx-core",
+ "thiserror",
+ "tokio",
+]
+
+[[package]]
 name = "arc-swap"
 version = "0.4.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2410,27 +2431,6 @@ checksum = "11834e137f3b14e309437a8276714eed3a80d1ef894869e510f2c0c0b98b9f4a"
 dependencies = [
  "hostname",
  "quick-error",
-]
-
-[[package]]
-name = "rust-gql"
-version = "0.1.0"
-dependencies = [
- "actix-cors",
- "actix-rt",
- "actix-web 3.1.0",
- "anyhow",
- "async-graphql",
- "async-graphql-actix-web",
- "config",
- "dotenv",
- "env_logger",
- "reqwest",
- "serde 1.0.117",
- "sqlx",
- "sqlx-core",
- "thiserror",
- "tokio",
 ]
 
 [[package]]

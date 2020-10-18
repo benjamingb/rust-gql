@@ -23,8 +23,8 @@ pub struct QueryRoot;
 #[async_graphql::Object]
 impl QueryRoot {
     async fn todos(&self, ctx: &Context<'_>) -> FieldResult<Vec<Todo>> {
-        let pool = ctx.data::<PgPool>();
-        let items = Todo::list(&pool).await?;
+        let pool = ctx.data::<PgPool>()?;
+        let items = Todo::list(pool).await?;
         Ok(items)
     }
 }

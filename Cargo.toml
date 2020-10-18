@@ -1,5 +1,5 @@
 [package]
-name = "rust-gql"
+name = "app"
 version = "0.1.0"
 authors = ["benjamin <benjamin@gnbit.com>"]
 edition = "2018"
