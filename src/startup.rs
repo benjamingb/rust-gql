@@ -1,6 +1,5 @@
 use crate::graphql_schema::{MutationRoot, QueryRoot};
 use actix_web::dev::Server;
-use actix_web::web::Data;
 use actix_web::{web, App, HttpResponse, HttpServer, Result};
 use async_graphql::http::{playground_source, GraphQLPlaygroundConfig};
 use async_graphql::{EmptySubscription, Schema};

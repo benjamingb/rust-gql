@@ -1,35 +1,16 @@
+use crate::gql_type::TodoType; 
 use crate::todo::*;
 use async_graphql::*;
 use sqlx::postgres::PgPool;
 
-#[async_graphql::Object]
-impl Todo {
-    async fn id(&self) -> i32 {
-        self.id
-    }
-
-    async fn body(&self) -> &str {
-        &self.body
-    }
-
-    async fn complete(&self) -> &str {
-        &self.complete
-    }
-}
-
-#[derive(InputObject)]
-pub struct TodoInput {
-    body: String,
-    complete: String,
-}
 
 pub struct QueryRoot;
 
 #[async_graphql::Object]
 impl QueryRoot {
-    async fn todos(&self, ctx: &Context<'_>) -> FieldResult<Vec<Todo>> {
+    async fn todos(&self, ctx: &Context<'_>) -> FieldResult<Vec<TodoType>> {
         let pool = ctx.data::<PgPool>()?;
-        let items = Todo::list(&pool).await?;
+        let items = TodoRepo::list(pool).await?;
         Ok(items)
     }
 }
