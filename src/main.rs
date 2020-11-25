@@ -17,7 +17,7 @@ async fn main() -> Result<(), anyhow::Error> {
     .expect("Failed to connect to Postgres.");
    
 
-    let listener = TcpListener::bind("127.0.0.1:5161")?;
+    let listener = TcpListener::bind("127.0.0.1:7161")?;
     run(listener, connection_pool)?.await?;
     Ok(())
 }

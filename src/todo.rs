@@ -1,4 +1,6 @@
+use crate::interface_todo::ITodoRepo;
 use crate::result::Result;
+use async_trait::async_trait;
 use serde::Serialize;
 use sqlx::{FromRow, PgPool};
 
@@ -9,8 +11,9 @@ pub struct Todo {
     pub complete: String,
 }
 
-impl Todo {
-    pub async fn list(pool: &PgPool) -> Result<Vec<Todo>> {
+#[async_trait]
+impl<P> ITodoRepo<P> for Todo {
+    async fn list(pool: &P) -> Result<Vec<Todo>> {
         let rowset = sqlx::query_as(r#"SELECT * FROM todo"#)
             .fetch_all(pool)
             .await?;
