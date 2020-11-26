@@ -13,9 +13,11 @@ pub struct TodoSchema {
 
 pub struct TodoRepo;
 #[async_trait]
-impl<P> ITodoRepo<P> for TodoRepo {
+impl<'a, P: sqlx::Executor<'_, Database = sqlx::Postgres>> ITodoRepo<'a,P> for TodoRepo {
     async fn list(pool: &P) -> Result<Vec<TodoType>> {
-        let rowset = sqlx::query_as!(TodoSchema, r#"SELECT * FROM todo"#)
+        let rowset = sqlx::query_as!(
+            TodoSchema, 
+            r#"SELECT * FROM todo"#)
             .fetch_all(pool)
             .await?
             .iter()

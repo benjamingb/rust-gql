@@ -1,8 +1,8 @@
-use crate::gql_type::TodoType; 
+use crate::gql_type::TodoType;
+use crate::interface_todo::ITodoRepo;
 use crate::todo::*;
 use async_graphql::*;
 use sqlx::postgres::PgPool;
-
 
 pub struct QueryRoot;
 
@@ -10,7 +10,7 @@ pub struct QueryRoot;
 impl QueryRoot {
     async fn todos(&self, ctx: &Context<'_>) -> FieldResult<Vec<TodoType>> {
         let pool = ctx.data::<PgPool>()?;
-        let items = TodoRepo::list(pool).await?;
+        let items = TodoRepo::list(&pool).await?;
         Ok(items)
     }
 }
